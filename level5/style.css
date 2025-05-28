@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+}
+
+body {
+  background-color: #bcd57b;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1520px;
+  height: 680px;
+  border: 1px solid rgb(0, 0, 0);
+  /*background-image: url("images/field.png");*/
+  background-color: #93c572;
+  background-size: 100% 100%;
+  background-position: center;
+  border-radius: 5px;
+  margin: 7px;
+}
+/* Sakri scrollbar*/
+*::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* Sakri scrollbar*/
+.grid div {
+  width: 40px;
+  height: 40px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #92cd00;
+  border-bottom: 3px solid #2c6700;
+  border-top: 3px solid #2c6700;
+  font-size: 20px;
+}
+
+.logo {
+  background: url("../images/buggslogo.png");
+  background-size: 100% 100%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.timer,
+.enemy-score,
+.hostage-score {
+  width: 80px;
+}
+
+.author {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 6px;
+  background-color: rgb(53, 159, 53);
+  color: #fff;
+  cursor: pointer;
+}
+
+.authorlogo {
+  background: url("../images/authorlogo.png");
+  background-size: 100% 100%;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  margin: 0 10px 0 10px;
+}
+
+.authortext {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+}
+.next-level {
+  width: 200px;
+  background-color: rgb(34, 148, 76);
+  border-radius: 5px;
+  border: none;
+  padding: 8px;
+  color: #fff;
+  display: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+.play-again {
+  width: 200px;
+  background-color: rgb(34, 148, 76);
+  border-radius: 5px;
+  border: none;
+  padding: 8px;
+  color: #fff;
+  display: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+.play-again:hover {
+  opacity: 0.5;
+}
+
+.hero-right {
+  background-image: url("../images/hero-r.png");
+}
+.hero-left {
+  background-image: url("../images/hero-l.png");
+}
+
+.enemy1 {
+  background-image: url("../images/tazz.png");
+  background-size: cover;
+}
+
+.enemy2 {
+  background-image: url("../images/elmer.png");
+  background-size: cover;
+}
+
+.enemy3 {
+  background-image: url("../images/yosemitesam.png");
+  background-size: cover;
+}
+
+.enemy4 {
+  background-image: url("../images/pepe.png");
+  background-size: cover;
+}
+
+.enemy5 {
+  background-image: url("../images/turtle.png");
+  background-size: cover;
+}
+
+.wall {
+  opacity: 0.8;
+}
+
+.object1 {
+  background-image: url("../images/forest1.png");
+  background-size: cover;
+}
+
+.object2 {
+  background-image: url("../images/forest2.png");
+  background-size: cover;
+}
+
+.object3 {
+  background-image: url("../images/forest3.png");
+  background-size: cover;
+}
+
+.object4 {
+  background-image: url("../images/forest4.png");
+  background-size: cover;
+}
+
+.object5 {
+  background-image: url("../images/forest5.png");
+  background-size: cover;
+}
+
+.object6 {
+  background-image: url("../images/forest6.png");
+  background-size: cover;
+}
+
+.object7 {
+  background-image: url("../images/forest7.png");
+  background-size: cover;
+}
+
+.hostage {
+  background-image: url("../images/hostage5.png");
+  background-size: cover;
+}
+
+.weapon {
+  background-image: url("../images/bullet.png");
+  opacity: 0.8;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buggsy Game</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="nav">
+      <div class="logo" onclick="location.href='../index.html'"></div>
+      <div class="controls">
+        Move: &#8592; &#8593; &#8594; &#8595; Shoot: &#9602;
+        <small
+          ><small><small><small></small><sup>Space btn</sup></small></small></small></small
+        >
+      </div>
+      <div class="hostage-score">&#10084; <span id="hostage-score">0</span></div>
+      <div class="enemy-score">&#127919; <span id="enemy-kill">0</span></div>
+      <div class="timer">&#128337; <span id="timer">0</span></div>
+      <button class="next-level" onclick="location.href='../level3/index.html';">
+        Next level
+      </button>
+      <button class="play-again" onclick="location.href='index.html';">
+        Play again
+      </button>
+      <div class="author" onclick="window.location.href='https://nebojsajovanovic.netlify.app/';">
+      <div class="authorlogo"></div>
+      <div class="authortext">
+        <samp>Nebojša Jovanović</samp>
+        <samp>&#x24B8;  jnesa85@gmail.com</samp>
+      </div>
+    </div>
+
+    </div>
+    <div class="grid"></div>
+
+    <script src="script.js" charset="utf-8"></script>
+  </body>
+</html>

@@ -193,7 +193,7 @@ body {
   display: none;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 980px) {
   .mob-controls {
     display: flex;
     justify-content: space-around;

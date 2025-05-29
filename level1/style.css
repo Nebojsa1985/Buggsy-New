@@ -235,16 +235,7 @@ body {
   .center-btn {
     opacity: 0;
   }
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    height: 100vw;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
+
   body {
     display: grid;
     align-content: center;

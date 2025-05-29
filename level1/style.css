@@ -205,32 +205,35 @@ body {
   .move {
     position: absolute;
     bottom: 1px;
-    right: 20px;
+    right: 1px;
     display: grid;
     gap: 1px;
     justify-items: center;
-    opacity: 0.5;
+    opacity: 0.4;
     border-radius: 22px;
     padding: 4px;
     align-items: center;
     background-color: rgb(153, 191, 101);
   }
   .shoot {
+    position: absolute;
+    bottom: 3px;
+    left: 3px;
     display: grid;
     background-color: rgb(214, 100, 100);
     align-content: center;
     border-radius: 4px;
-    opacity: 0.5;
-    width: 200px;
-    height: 30px;
+    opacity: 0.4;
+    width: 80px;
+    height: 60px;
   }
   .move-btn {
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
   }
   .move-btn-wide {
-    height: 19px;
-    width: 24px;
+    height: 29px;
+    width: 36px;
   }
   .center-btn {
     opacity: 0;

@@ -122,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check if hero is caught by enemy
     if (squares[heroIndex].classList.contains("enemy")) {
       playSoundEffect("../sounds/herodie.wav");
+
       gameOver();
     }
   }
@@ -134,12 +135,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobDownBtn = document.querySelector("#mob-down");
   const mobRightBtn = document.querySelector("#mob-right");
 
-  mobShootBtn.addEventListener("click", () => {
+  const shootOnMob = () => {
     if (squares[heroIndex].classList.contains("hero-right")) shootR();
     if (squares[heroIndex].classList.contains("hero-left")) shootL();
-  });
-
-  mobLeftBtn.addEventListener("click", () => {
+  };
+  const leftOnMob = () => {
     if (squares[heroIndex].classList.contains("hero-right")) {
       squares[heroIndex].classList.remove("hero-right");
       squares[heroIndex].classList.add("hero-left");
@@ -154,8 +154,8 @@ document.addEventListener("DOMContentLoaded", () => {
       squares[heroIndex].classList.add("hero-left");
     }
     checkCollisionsAndHostages();
-  });
-  mobRightBtn.addEventListener("click", () => {
+  };
+  const rightOnMob = () => {
     if (squares[heroIndex].classList.contains("hero-left")) {
       squares[heroIndex].classList.remove("hero-left");
       squares[heroIndex].classList.add("hero-right");
@@ -170,8 +170,8 @@ document.addEventListener("DOMContentLoaded", () => {
       squares[heroIndex].classList.add("hero-right");
     }
     checkCollisionsAndHostages();
-  });
-  mobUpBtn.addEventListener("click", () => {
+  };
+  const upOnMob = () => {
     if (
       heroIndex > width - 1 &&
       !squares[heroIndex - width].classList.contains("wall") &&
@@ -191,8 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
       squares[heroIndex].classList.add("hero-left");
     }
     checkCollisionsAndHostages();
-  });
-  mobDownBtn.addEventListener("click", () => {
+  };
+  const downOnMob = () => {
     if (
       heroIndex < squares.length - width &&
       !squares[heroIndex + width].classList.contains("wall") &&
@@ -212,7 +212,13 @@ document.addEventListener("DOMContentLoaded", () => {
       squares[heroIndex].classList.add("hero-left");
     }
     checkCollisionsAndHostages();
-  });
+  };
+
+  mobShootBtn.addEventListener("click", shootOnMob);
+  mobLeftBtn.addEventListener("click", leftOnMob);
+  mobRightBtn.addEventListener("click", rightOnMob);
+  mobUpBtn.addEventListener("click", upOnMob);
+  mobDownBtn.addEventListener("click", downOnMob);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -410,7 +416,10 @@ document.addEventListener("DOMContentLoaded", () => {
       //ako udari u zadnje polje (treba resiti pucanje za zadnje polje squares jer ne radi)
       if (bullet == squares.length - 2) myStopShoot();
       //ako metak pogodi hostage
-      if (squares[bullet].classList.contains("hostage")) gameOver();
+      if (squares[bullet].classList.contains("hostage")) {
+        alert("AHHH!!! You hit hostage");
+        gameOver();
+      }
     }
     const shootLine = setInterval(bulletShoot, 80);
     function myStopShoot() {
@@ -433,7 +442,10 @@ document.addEventListener("DOMContentLoaded", () => {
       //ako udari u yadnje polje (treba resiti pucanje za zadnje polje squares jer ne radi)
       if (bullet == 1) myStopShoot();
       //ako metak pogodi hostage
-      if (squares[bullet].classList.contains("hostage")) gameOver();
+      if (squares[bullet].classList.contains("hostage")) {
+        alert("AHHH!!! You hit hostage");
+        gameOver();
+      }
     }
     const shootLine = setInterval(bulletShoot, 80);
 
@@ -450,6 +462,13 @@ document.addEventListener("DOMContentLoaded", () => {
     totalScore = (savedHostages + enemiesKilled) * 10 - time;
     controlsDisplay.textContent = "Game Over! Your score=" + totalScore;
     document.removeEventListener("keydown", keyPush);
+    mobShootBtn.removeEventListener("click", shootOnMob);
+    mobLeftBtn.removeEventListener("click", leftOnMob);
+    mobRightBtn.removeEventListener("click", rightOnMob);
+    mobUpBtn.removeEventListener("click", upOnMob);
+    mobDownBtn.removeEventListener("click", downOnMob);
+    document.removeEventListener("mousedown", keyPush);
+    document.removeEventListener("touchstart", keyPush);
     document.querySelector(".play-again").style.display = "inline-block";
     clearAllInt();
   }
@@ -459,6 +478,7 @@ document.addEventListener("DOMContentLoaded", () => {
     totalScore = (savedHostages + enemiesKilled) * 10 - time;
     controlsDisplay.textContent = "You win!!!!! Your score=" + totalScore;
     document.removeEventListener("keydown", keyPush);
+
     document.querySelector(".next-level").style.display = "inline-block";
     clearAllInt();
   }

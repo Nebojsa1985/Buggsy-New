@@ -108,6 +108,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   createBoard();
+
+  ////
+  function checkCollisionsAndHostages() {
+    // Check if hero saved a hostage
+    if (squares[heroIndex].classList.contains("hostage")) {
+      squares[heroIndex].classList.remove("hostage");
+      savedHostages++;
+      scoreDisplay.textContent = savedHostages;
+      playSoundEffect("../sounds/savehostage.wav");
+    }
+
+    // Check if hero is caught by enemy
+    if (squares[heroIndex].classList.contains("enemy")) {
+      playSoundEffect("../sounds/herodie.wav");
+      gameOver();
+    }
+  }
+  ////
   //kretanje heroja na malim ekranima//////////////////////////////////////////////////////////////////////////////////////
 
   const mobShootBtn = document.querySelector("#mob-shoot");
@@ -135,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         heroIndex -= 1;
       squares[heroIndex].classList.add("hero-left");
     }
+    checkCollisionsAndHostages();
   });
   mobRightBtn.addEventListener("click", () => {
     if (squares[heroIndex].classList.contains("hero-left")) {
@@ -150,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
         heroIndex += 1;
       squares[heroIndex].classList.add("hero-right");
     }
+    checkCollisionsAndHostages();
   });
   mobUpBtn.addEventListener("click", () => {
     if (
@@ -170,6 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
       heroIndex -= 38;
       squares[heroIndex].classList.add("hero-left");
     }
+    checkCollisionsAndHostages();
   });
   mobDownBtn.addEventListener("click", () => {
     if (
@@ -190,6 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
       heroIndex += 38;
       squares[heroIndex].classList.add("hero-left");
     }
+    checkCollisionsAndHostages();
   });
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -448,4 +470,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //okidanje dugmica
   document.addEventListener("keydown", keyPush);
+  document.addEventListener("mousedown", keyPush);
+  document.addEventListener("touchstart", keyPush);
 });

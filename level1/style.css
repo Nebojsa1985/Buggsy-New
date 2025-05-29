@@ -115,9 +115,11 @@ body {
 
 .hero-right {
   background-image: url("../images/hero-r.png");
+  background-size: cover;
 }
 .hero-left {
   background-image: url("../images/hero-l.png");
+  background-size: cover;
 }
 
 .enemy1 {
@@ -187,6 +189,7 @@ body {
 .weapon {
   background-image: url("../images/bullet.png");
   opacity: 0.8;
+  background-size: cover;
 }
 
 .mob-controls {

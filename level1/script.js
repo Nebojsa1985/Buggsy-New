@@ -24,6 +24,22 @@ function toggleFullScreen() {
   }
 }
 
+function setFullScreen() {
+  const elem = document.documentElement;
+
+  if (!document.fullscreenElement) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+      /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      /* IE11 */
+      elem.msRequestFullscreen();
+    }
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".grid");
   const controlsDisplay = document.querySelector(".controls");
@@ -43,7 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
   startLevelBtn.addEventListener("click", () => {
     startLevel.style.display = "none";
     grid.style.display = "flex";
-    toggleFullScreen();
+
+    setFullScreen();
   });
 
   const timeElapse = setInterval(() => {
@@ -481,6 +498,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".play-again").style.display = "inline-block";
     clearAllInt();
   }
+
   //funkcija za game win
   function gameWin() {
     playSoundEffect("../sounds/winlevel.mp3");

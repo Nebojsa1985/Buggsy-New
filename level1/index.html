@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="nav">
-      <button onclick=" toggleFullScreen()">↔</button>
+    <div class="nav">     
       <div class="logo" onclick="location.href='../index.html'"></div>
       <div class="controls">
         Move: &#8592; &#8593; &#8594; &#8595; Shoot: &#9602;
@@ -33,8 +32,22 @@
       <div class="authortext">
         <samp>Nebojša Jovanović</samp>
         <samp>&#x24B8;  jnesa85@gmail.com</samp>
-      </div>
+      </div>     
     </div>
+    <button onclick="toggleFullScreen()">↔</button>
+    </div>
+    <div class="start-level">
+      <div>
+        <img src="../images/buggslogo.png" alt="logo"  class="start-level-image"/>
+      </div>
+      <div class="goals">
+        <p>Goal is to save all tweeties<img class="txt-img" src="../images/hostage3.png" alt="tweety">and take down enemies with carrots<img class="txt-img" src="../images/bullet.png" alt="carrot">
+          <br>
+          Hint! Don't hit <img class="txt-img" src="../images/hostage3.png" alt="tweety">with<img class="txt-img" src="../images/bullet.png" alt="carrot">. Slower enemies are harder to take down.
+        </p>   
+        <button  class="start-level-btn" >Enter battle</button>   
+      
+      </div>
 
     </div>
     <div class="grid"></div>

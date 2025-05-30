@@ -37,6 +37,15 @@ document.addEventListener("DOMContentLoaded", () => {
   let time = 0;
   let totalScore;
 
+  const startLevelBtn = document.querySelector(".start-level-btn");
+  const startLevel = document.querySelector(".start-level");
+
+  startLevelBtn.addEventListener("click", () => {
+    startLevel.style.display = "none";
+    grid.style.display = "flex";
+    toggleFullScreen();
+  });
+
   const timeElapse = setInterval(() => {
     time += 1;
     timer.textContent = time;
@@ -478,7 +487,13 @@ document.addEventListener("DOMContentLoaded", () => {
     totalScore = (savedHostages + enemiesKilled) * 10 - time;
     controlsDisplay.textContent = "You win!!!!! Your score=" + totalScore;
     document.removeEventListener("keydown", keyPush);
-
+    mobShootBtn.removeEventListener("click", shootOnMob);
+    mobLeftBtn.removeEventListener("click", leftOnMob);
+    mobRightBtn.removeEventListener("click", rightOnMob);
+    mobUpBtn.removeEventListener("click", upOnMob);
+    mobDownBtn.removeEventListener("click", downOnMob);
+    document.removeEventListener("mousedown", keyPush);
+    document.removeEventListener("touchstart", keyPush);
     document.querySelector(".next-level").style.display = "inline-block";
     clearAllInt();
   }

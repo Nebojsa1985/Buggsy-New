@@ -59,8 +59,13 @@ document.addEventListener("DOMContentLoaded", () => {
   startLevelBtn.addEventListener("click", () => {
     startLevel.style.display = "none";
     grid.style.display = "flex";
-
+    if (window.innerWidth < 960) {
+      document.querySelector(".mob-controls").style.display = "flex";
+    }
     setFullScreen();
+
+    document.addEventListener("mousedown", keyPush);
+    document.addEventListener("touchstart", keyPush);
   });
 
   const timeElapse = setInterval(() => {
@@ -523,6 +528,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //okidanje dugmica
   document.addEventListener("keydown", keyPush);
-  document.addEventListener("mousedown", keyPush);
-  document.addEventListener("touchstart", keyPush);
 });

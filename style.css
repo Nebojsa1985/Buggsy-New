@@ -24,7 +24,7 @@ button:active {
   transform: translate(2px, 2px);
 }
 
-img {
+.image img {
   width: 150px;
 }
 
@@ -126,49 +126,34 @@ img {
   background-color: rgb(5, 54, 96);
 }
 
-@media screen and (max-width: 1440px) and (min-width: 1280px) {
+.author {
+  color: rgb(45, 102, 151);
+  cursor: pointer;
 }
-@media screen and (max-width: 1024px) and (min-width: 601px) {
-  /*
-  .phone-message {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    color: antiquewhite;
-    padding: 50px;
-    text-align: center;
-  }
-  .head {
+
+@media (min-width: 310px) and (max-height: 810px) and (orientation: portrait) {
+  .controls {
     display: none;
   }
-  .allLevels {
-    display: none;
-  }
-  */
 }
-@media screen and (max-width: 600px) {
-  /*
-  .phone-message {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    color: antiquewhite;
-    padding: 50px;
-    text-align: center;
-  }
-  .head {
+@media (min-width: 310px) and (max-height: 810px) and (orientation: landscape) {
+  .controls {
     display: none;
   }
-  .allLevels {
-    display: none;
+  .image img {
+    width: 50px;
   }
-  */
+
+  .head h1 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) and (min-width: 481px) {
+}
+
+@media screen and (max-width: 1279px) and (min-width: 769px) {
+}
+
+@media screen and (min-width: 1280px) {
 }

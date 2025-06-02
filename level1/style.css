@@ -31,10 +31,21 @@ button {
   padding: 10px;
 }
 .start-level-btn {
-  width: 300px;
+  width: 250px;
   height: 100px;
   font-size: 30px;
   border-radius: 30px;
+  color: rgb(45, 102, 151);
+}
+.start-level-rotate {
+  width: 250px;
+  height: 100px;
+  font-size: 30px;
+  border-radius: 30px;
+  background-color: gainsboro;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .txt-img {
   width: 20px;
@@ -69,7 +80,8 @@ button {
 .nav {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 20px;
   align-items: center;
   background-color: #92cd00;
   border-bottom: 3px solid #2c6700;
@@ -224,30 +236,50 @@ button {
 .mob-controls {
   display: none;
 }
+
 @media (min-width: 310px) and (max-height: 810px) and (orientation: portrait) {
+  .nav {
+    display: none;
+    height: 10vh;
+  }
+
+  .start-level-image {
+    width: 160px;
+  }
+
+  .goals {
+    font-size: 14px;
+  }
   .start-level {
     flex-direction: column;
     height: 90vh;
   }
-  .start-level-image {
-    width: 250px;
-  }
+
   .goals {
     width: 250px;
   }
+
+  .goals > p {
+    display: none;
+  }
+
   .start-level-btn {
+    display: none;
   }
 }
 @media (min-width: 310px) and (max-height: 810px) and (orientation: landscape) {
   .start-level-image {
     width: 150px;
   }
+  .start-level-rotate {
+    display: none;
+  }
   .goals {
     width: 250px;
     font-size: 12px;
   }
   .mob-controls {
-    display: flex;
+    display: none;
     justify-content: space-around;
     align-items: center;
   }
@@ -297,6 +329,7 @@ button {
     justify-content: center;
   }
   .nav {
+    width: 100vw;
     font-size: 10px;
     height: 20px;
     border: 1px solid black;

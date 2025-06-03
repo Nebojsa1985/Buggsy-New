@@ -470,11 +470,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (squares[bullet].classList.contains("wall")) myStopShoot();
       //ako udari u desnu ivicu
       if (bullet % width == 0) myStopShoot();
-      //ako udari u yadnje polje (treba resiti pucanje za zadnje polje squares jer ne radi)
+      //ako udari u zadnje polje (treba resiti pucanje za zadnje polje squares jer ne radi)
       if (bullet == 1) myStopShoot();
       //ako metak pogodi hostage
       if (squares[bullet].classList.contains("hostage")) {
-        alert("AHHH!!! You hit hostage");
+        alert("AHHH!!! You destroyed the egg");
         gameOver();
       }
     }

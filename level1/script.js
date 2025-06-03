@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
   startLevelBtn.addEventListener("click", () => {
     startLevel.style.display = "none";
     grid.style.display = "flex";
-    if (window.innerWidth < 960) {
+    if (window.innerWidth < 1365) {
       document.querySelector(".mob-controls").style.display = "flex";
     }
     setFullScreen();

@@ -379,7 +379,7 @@ button {
     height: 289px;
     border: 1px solid black;
     /*background-image: url("images/field.png");*/
-    background-color: black;
+    background-color: rgb(214, 211, 65);
     background-size: 100% 100%;
     background-position: center;
     border-radius: 5px;
@@ -537,7 +537,7 @@ button {
     height: 442px;
     border: 1px solid black;
     /*background-image: url("images/field.png");*/
-    background-color: black;
+    background-color: rgb(214, 211, 65);
     background-size: 100% 100%;
     background-position: center;
     border-radius: 5px;

@@ -380,7 +380,7 @@ button {
     height: 289px;
     border: 1px solid black;
     /*background-image: url("images/field.png");*/
-    background-color: rgb(20, 164, 73);
+    background-color: burlywood;
     background-size: 100% 100%;
     background-position: center;
     border-radius: 5px;
@@ -538,7 +538,7 @@ button {
     height: 442px;
     border: 1px solid black;
     /*background-image: url("images/field.png");*/
-    background-color: rgb(20, 164, 73);
+    background-color: burlywood;
     background-size: 100% 100%;
     background-position: center;
     border-radius: 5px;

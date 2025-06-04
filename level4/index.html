@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Buggsy Game</title>
 
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="nav">
-      <div class="logo" onclick="location.href='../index.html'"></div>
+    <div class="nav">     
+      <div class="home" onclick="location.href='../index.html'">🏠</div>
       <div class="controls">
         Move: &#8592; &#8593; &#8594; &#8595; Shoot: &#9602;
         <small
@@ -25,17 +27,39 @@
       <button class="play-again" onclick="location.href='index.html';">
         Play again
       </button>
-      <div class="author" onclick="window.location.href='https://nebojsajovanovic.netlify.app/';">
-      <div class="authorlogo"></div>
-      <div class="authortext">
-        <samp>Nebojša Jovanović</samp>
-        <samp>&#x24B8;  jnesa85@gmail.com</samp>
-      </div>
+
+  </div>
+    <button onclick="toggleFullScreen()">↔</button>
     </div>
 
+    
+    <div class="start-level">
+      <div>
+        <img src="../images/buggslogo.png" alt="logo"  class="start-level-image"/>
+      </div>
+      <div class="goals">
+        <p>Goal is to save all eggs<img class="txt-img" src="../images/hostage3.png" alt="tweety">and take down enemies with carrots<img class="txt-img" src="../images/bullet.png" alt="carrot">
+          <br>
+          Hint! Don't hit <img class="txt-img" src="../images/hostage3.png" alt="tweety">with<img class="txt-img" src="../images/bullet.png" alt="carrot">. Slower enemies are harder to take down.
+        </p>   
+         <h4 class="start-level-rotate">↻ 📱</h4> 
+        <button  class="start-level-btn" >Enter battle</button>   
+      
+      </div>
+
     </div>
-    <div class="grid"></div>
+    <div class="grid-field-div"> <div class="grid"></div></div>
+   
+    <div class="mob-controls">
+      <button id="mob-shoot" class="shoot">🔫</button>
+      <div class="move"><div><button  id="mob-up" class="move-btn">⬆️</button></div>
+      <div><button id="mob-left" class="move-btn-wide" >⬅️</button><button class="move-btn-wide center-btn">&nbsp;</button><button id="mob-right" class="move-btn-wide">➡️</button></div>
+      <button id="mob-down" class="move-btn">⬇️</button></div>
+    </div>
+
+
 
     <script src="script.js" charset="utf-8"></script>
+    
   </body>
 </html>

@@ -1,3 +1,45 @@
+function toggleFullScreen() {
+  const elem = document.documentElement;
+
+  if (!document.fullscreenElement) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+      /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      /* IE11 */
+      elem.msRequestFullscreen();
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      /* IE11 */
+      document.msExitFullscreen();
+    }
+  }
+}
+
+function setFullScreen() {
+  const elem = document.documentElement;
+
+  if (!document.fullscreenElement) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+      /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      /* IE11 */
+      elem.msRequestFullscreen();
+    }
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".grid");
   const controlsDisplay = document.querySelector(".controls");
@@ -10,6 +52,21 @@ document.addEventListener("DOMContentLoaded", () => {
   let enemiesKilled = 0;
   let time = 0;
   let totalScore;
+
+  const startLevelBtn = document.querySelector(".start-level-btn");
+  const startLevel = document.querySelector(".start-level");
+
+  startLevelBtn.addEventListener("click", () => {
+    startLevel.style.display = "none";
+    grid.style.display = "flex";
+    if (window.innerWidth < 1365) {
+      document.querySelector(".mob-controls").style.display = "flex";
+    }
+    setFullScreen();
+
+    document.addEventListener("mousedown", keyPush);
+    document.addEventListener("touchstart", keyPush);
+  });
 
   const timeElapse = setInterval(() => {
     time += 1;
@@ -37,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
     7,1,1,1,1,1,1,1,1,1,1,1,1,2,8,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,6,
     7,7,7,1,1,1,1,4,4,4,1,1,1,1,1,1,4,4,4,4,4,4,4,1,1,1,1,1,1,1,1,1,1,1,1,6,6,6,    
   ]
-
   const squares = [];
 
   //funkcija za pustanje zvukova
@@ -82,6 +138,120 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   createBoard();
+
+  ////
+  function checkCollisionsAndHostages() {
+    // Check if hero saved a hostage
+    if (squares[heroIndex].classList.contains("hostage")) {
+      squares[heroIndex].classList.remove("hostage");
+      savedHostages++;
+      scoreDisplay.textContent = savedHostages;
+      playSoundEffect("../sounds/savehostage.wav");
+    }
+
+    // Check if hero is caught by enemy
+    if (squares[heroIndex].classList.contains("enemy")) {
+      playSoundEffect("../sounds/herodie.wav");
+
+      gameOver();
+    }
+  }
+  ////
+  //kretanje heroja na malim ekranima//////////////////////////////////////////////////////////////////////////////////////
+
+  const mobShootBtn = document.querySelector("#mob-shoot");
+  const mobLeftBtn = document.querySelector("#mob-left");
+  const mobUpBtn = document.querySelector("#mob-up");
+  const mobDownBtn = document.querySelector("#mob-down");
+  const mobRightBtn = document.querySelector("#mob-right");
+
+  const shootOnMob = () => {
+    if (squares[heroIndex].classList.contains("hero-right")) shootR();
+    if (squares[heroIndex].classList.contains("hero-left")) shootL();
+  };
+  const leftOnMob = () => {
+    if (squares[heroIndex].classList.contains("hero-right")) {
+      squares[heroIndex].classList.remove("hero-right");
+      squares[heroIndex].classList.add("hero-left");
+    } else {
+      //squares[heroIndex].classList.remove('hero-right')
+      squares[heroIndex].classList.remove("hero-left");
+      if (
+        heroIndex % width !== 0 &&
+        !squares[heroIndex - 1].classList.contains("wall")
+      )
+        heroIndex -= 1;
+      squares[heroIndex].classList.add("hero-left");
+    }
+    checkCollisionsAndHostages();
+  };
+  const rightOnMob = () => {
+    if (squares[heroIndex].classList.contains("hero-left")) {
+      squares[heroIndex].classList.remove("hero-left");
+      squares[heroIndex].classList.add("hero-right");
+    } else {
+      squares[heroIndex].classList.remove("hero-right");
+      //squares[heroIndex].classList.remove('hero-left')
+      if (
+        heroIndex % width < width - 1 &&
+        !squares[heroIndex + 1].classList.contains("wall")
+      )
+        heroIndex += 1;
+      squares[heroIndex].classList.add("hero-right");
+    }
+    checkCollisionsAndHostages();
+  };
+  const upOnMob = () => {
+    if (
+      heroIndex > width - 1 &&
+      !squares[heroIndex - width].classList.contains("wall") &&
+      squares[heroIndex].classList.contains("hero-right")
+    ) {
+      squares[heroIndex].classList.remove("hero-right");
+      heroIndex -= 38;
+      squares[heroIndex].classList.add("hero-right");
+    }
+    if (
+      heroIndex > width - 1 &&
+      !squares[heroIndex - width].classList.contains("wall") &&
+      squares[heroIndex].classList.contains("hero-left")
+    ) {
+      squares[heroIndex].classList.remove("hero-left");
+      heroIndex -= 38;
+      squares[heroIndex].classList.add("hero-left");
+    }
+    checkCollisionsAndHostages();
+  };
+  const downOnMob = () => {
+    if (
+      heroIndex < squares.length - width &&
+      !squares[heroIndex + width].classList.contains("wall") &&
+      squares[heroIndex].classList.contains("hero-right")
+    ) {
+      squares[heroIndex].classList.remove("hero-right");
+      heroIndex += 38;
+      squares[heroIndex].classList.add("hero-right");
+    }
+    if (
+      heroIndex < squares.length - width &&
+      !squares[heroIndex + width].classList.contains("wall") &&
+      squares[heroIndex].classList.contains("hero-left")
+    ) {
+      squares[heroIndex].classList.remove("hero-left");
+      heroIndex += 38;
+      squares[heroIndex].classList.add("hero-left");
+    }
+    checkCollisionsAndHostages();
+  };
+
+  mobShootBtn.addEventListener("click", shootOnMob);
+  mobLeftBtn.addEventListener("click", leftOnMob);
+  mobRightBtn.addEventListener("click", rightOnMob);
+  mobUpBtn.addEventListener("click", upOnMob);
+  mobDownBtn.addEventListener("click", downOnMob);
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   //hero
   let heroIndex = 604;
   squares[heroIndex].classList.add("hero-right");
@@ -159,7 +329,7 @@ document.addEventListener("DOMContentLoaded", () => {
   enemyCreate(450, "enemy5", 320);
   enemyCreate(550, "enemy5", 320);
 
-  //kretanje heroja
+  //kretanje heroja//////////////////////////////////////////////////////////////////////////////////////
   function keyPush(e) {
     switch (e.key) {
       case "ArrowLeft":
@@ -196,6 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
           heroIndex -= 38;
           squares[heroIndex].classList.add("hero-left");
         }
+        console.log(heroIndex);
         break;
       case "ArrowRight":
         if (squares[heroIndex].classList.contains("hero-left")) {
@@ -276,7 +447,10 @@ document.addEventListener("DOMContentLoaded", () => {
       //ako udari u zadnje polje (treba resiti pucanje za zadnje polje squares jer ne radi)
       if (bullet == squares.length - 2) myStopShoot();
       //ako metak pogodi hostage
-      if (squares[bullet].classList.contains("hostage")) gameOver();
+      if (squares[bullet].classList.contains("hostage")) {
+        alert("AHHH!!! You hit hostage");
+        gameOver();
+      }
     }
     const shootLine = setInterval(bulletShoot, 80);
     function myStopShoot() {
@@ -296,10 +470,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (squares[bullet].classList.contains("wall")) myStopShoot();
       //ako udari u desnu ivicu
       if (bullet % width == 0) myStopShoot();
-      //ako udari u yadnje polje (treba resiti pucanje za zadnje polje squares jer ne radi)
+      //ako udari u zadnje polje (treba resiti pucanje za zadnje polje squares jer ne radi)
       if (bullet == 1) myStopShoot();
       //ako metak pogodi hostage
-      if (squares[bullet].classList.contains("hostage")) gameOver();
+      if (squares[bullet].classList.contains("hostage")) {
+        alert("AHHH!!! You destroyed the egg");
+        gameOver();
+      }
     }
     const shootLine = setInterval(bulletShoot, 80);
 
@@ -316,15 +493,30 @@ document.addEventListener("DOMContentLoaded", () => {
     totalScore = (savedHostages + enemiesKilled) * 10 - time;
     controlsDisplay.textContent = "Game Over! Your score=" + totalScore;
     document.removeEventListener("keydown", keyPush);
+    mobShootBtn.removeEventListener("click", shootOnMob);
+    mobLeftBtn.removeEventListener("click", leftOnMob);
+    mobRightBtn.removeEventListener("click", rightOnMob);
+    mobUpBtn.removeEventListener("click", upOnMob);
+    mobDownBtn.removeEventListener("click", downOnMob);
+    document.removeEventListener("mousedown", keyPush);
+    document.removeEventListener("touchstart", keyPush);
     document.querySelector(".play-again").style.display = "inline-block";
     clearAllInt();
   }
+
   //funkcija za game win
   function gameWin() {
     playSoundEffect("../sounds/winlevel.mp3");
     totalScore = (savedHostages + enemiesKilled) * 10 - time;
     controlsDisplay.textContent = "You win!!!!! Your score=" + totalScore;
     document.removeEventListener("keydown", keyPush);
+    mobShootBtn.removeEventListener("click", shootOnMob);
+    mobLeftBtn.removeEventListener("click", leftOnMob);
+    mobRightBtn.removeEventListener("click", rightOnMob);
+    mobUpBtn.removeEventListener("click", upOnMob);
+    mobDownBtn.removeEventListener("click", downOnMob);
+    document.removeEventListener("mousedown", keyPush);
+    document.removeEventListener("touchstart", keyPush);
     document.querySelector(".next-level").style.display = "inline-block";
     clearAllInt();
   }

@@ -558,3 +558,15 @@ button {
     height: 26px;
   }
 }
+
+@media (min-width: 1340px) and (max-width: 1396px) and (min-height: 790px) and (max-height: 835px) and (orientation: landscape) {
+  .grid {
+    width: 1292px;
+    height: 578px;
+  }
+
+  .grid div {
+    width: 34px;
+    height: 34px;
+  }
+}

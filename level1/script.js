@@ -306,28 +306,28 @@ document.addEventListener("DOMContentLoaded", () => {
   enemyCreate(160, "enemy1", 70);
   enemyCreate(120, "enemy1", 70);
   enemyCreate(440, "enemy1", 70);
-  enemyCreate(560, "enemy1", 70);
-  enemyCreate(580, "enemy1", 70);
-  enemyCreate(540, "enemy1", 70);
+  enemyCreate(260, "enemy1", 70);
+  enemyCreate(280, "enemy1", 70);
+  enemyCreate(240, "enemy1", 70);
   enemyCreate(360, "enemy1", 70);
 
   enemyCreate(100, "enemy2", 350);
   enemyCreate(200, "enemy2", 350);
   enemyCreate(300, "enemy2", 350);
   enemyCreate(400, "enemy2", 350);
-  enemyCreate(500, "enemy2", 350);
+  enemyCreate(140, "enemy2", 350);
 
   enemyCreate(150, "enemy3", 320);
   enemyCreate(250, "enemy3", 320);
   enemyCreate(350, "enemy3", 320);
   enemyCreate(450, "enemy3", 320);
-  enemyCreate(550, "enemy3", 320);
+  enemyCreate(230, "enemy3", 320);
 
   enemyCreate(175, "enemy4", 453);
   enemyCreate(275, "enemy4", 453);
   enemyCreate(375, "enemy4", 453);
   enemyCreate(475, "enemy4", 453);
-  enemyCreate(575, "enemy4", 453);
+  enemyCreate(235, "enemy4", 453);
 
   //kretanje heroja//////////////////////////////////////////////////////////////////////////////////////
   function keyPush(e) {
